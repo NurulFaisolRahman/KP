@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.shin.disposisi">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/letter"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/TanpaJudul">
+        <activity
+            android:name=".FileLogin.Login"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FileOperator.Operator"
+            android:label="Operator"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FileKadis.Kadis"
+            android:label="Kadis"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FileKadis.Disposisi_Surat"
+            android:label="Disposisi Surat"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".FileBidang.Bidang"
+            android:label="Bidang"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FileSeksi.Seksi"
+            android:label="Sub Bidang"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".FileOperator.DetailSurat"
+            android:label="Detail Surat"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+            android:name=".LihatSurat"
+            android:label="Foto Surat"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".FileKadis.Edit_Disposisi_Kadis"
+            android:label="Kadis Edit Disposisi"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".FileBidang.BidangMendisposisi"
+            android:label="Bidang Mendisposisi"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".FileBidang.EditDisposisiBidang"
+            android:label="Edit Disposisi"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+        </activity>
+    </application>
+
+</manifest>

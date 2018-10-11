@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FileKadis.Disposisi_Surat">
+
+    <Button
+        android:id="@+id/LihatSurat"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="#FF0000"
+        android:text="Lihat Surat"
+        android:textColor="#0000FF"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.797" />
+
+    <Button
+        android:id="@+id/KadisMendisposisi"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="#FF0000"
+        android:text="Disposisi Surat"
+        android:textColor="#0000FF"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.960" />
+
+    <TextView
+        android:id="@+id/KadisMeneruskan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Diteruskan Kepada Sdr. :"
+        android:textColor="#0000FF"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029" />
+
+    <TextView
+        android:id="@+id/IsiDisposisi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Isi Disposisi :"
+        android:textColor="#0000FF"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.42" />
+
+    <EditText
+        android:id="@+id/IsiDisposisiKadis"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49" />
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1">
+
+        <TableRow android:paddingTop="5dp">
+            <CheckBox
+                android:id="@+id/BidangSekretaris"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sekretaris" />
+        </TableRow>
+        <TableRow android:paddingTop="5dp">
+            <CheckBox
+                android:id="@+id/BidangIKP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bidang IKP" />
+        </TableRow>
+        <TableRow android:paddingTop="5dp">
+            <CheckBox
+                android:id="@+id/BidangAptika"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bidang Aplikasi dan Informatika" />
+        </TableRow>
+        <TableRow android:paddingTop="5dp">
+            <CheckBox
+                android:id="@+id/BidangSD-TIK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bidang SD-TIK" />
+        </TableRow>
+    </TableLayout>
+</android.support.constraint.ConstraintLayout>

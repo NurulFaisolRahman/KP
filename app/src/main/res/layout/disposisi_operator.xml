@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:stretchColumns="2">
+            <TableRow android:paddingTop="5dp">
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Surat Dari" />
+                <EditText
+                    android:id="@+id/surat_dari"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"/>
+            </TableRow>
+            <TableRow android:paddingTop="5dp">
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Tanggal Surat" />
+                <EditText
+                    android:id="@+id/tanggal_surat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date"/>
+            </TableRow>
+            <TableRow android:paddingTop="5dp">
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Nomor Surat" />
+                <EditText
+                    android:id="@+id/nomor_surat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"/>
+            </TableRow>
+            <TableRow android:paddingTop="5dp">
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Diterima Tanggal" />
+                <EditText
+                    android:id="@+id/diterima_tanggal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date"/>
+            </TableRow>
+            <TableRow android:paddingTop="5dp">
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Nomor Agenda" />
+                <EditText
+                    android:id="@+id/nomor_agenda"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"/>
+            </TableRow>
+            <TableRow android:paddingTop="5dp">
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Sifat" />
+                <RadioGroup
+                    android:id="@+id/radio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <RadioButton
+                        android:id="@+id/radioButton4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="Sangat Segera" />
+                    <RadioButton
+                        android:id="@+id/radioButton3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Segera" />
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="Rahasia" />
+                    <RadioButton
+                        android:id="@+id/radioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="Biasa" />
+                </RadioGroup>
+            </TableRow>
+            <TableRow android:paddingTop="5dp">
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Perihal" />
+                <EditText
+                    android:id="@+id/perihal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:padding="5dp" />
+            </TableRow>
+            <TableRow android:paddingTop="5dp">
+                <Button
+                    android:id="@+id/choose"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="#FFFF00"
+                    android:textSize="15dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="Input Foto" />
+                <TextView
+                    android:id="@+id/JumlahFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow android:paddingTop="10dp">
+
+                <Button
+                    android:id="@+id/kirim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textColor="#FFFF00"
+                    android:textSize="20dp"
+                    android:layout_span="2"
+                    android:layout_gravity="center"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="Kirim" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+</android.widget.LinearLayout>
