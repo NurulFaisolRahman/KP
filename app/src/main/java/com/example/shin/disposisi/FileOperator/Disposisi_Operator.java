@@ -23,7 +23,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.shin.disposisi.FileLogin.ApiClientLogin;
-import com.example.shin.disposisi.FormDisposisi;
+import com.example.shin.disposisi.Respon;
 import com.example.shin.disposisi.R;
 import com.example.shin.disposisi.Server;
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -177,17 +177,17 @@ public class Disposisi_Operator extends Fragment implements View.OnClickListener
         String NomorAgenda = nomor_agenda.getText().toString();
         String Sifat = radio_button.getText().toString();
         String Perihal = perihal.getText().toString();
-        Call<FormDisposisi> call = apiInterface.DisposisiOperator(NomorSurat,SuratDari,TanggalSurat,DiterimaTanggal,NomorAgenda,Sifat,Perihal);
-        call.enqueue(new Callback<FormDisposisi>() {
+        Call<Respon> call = apiInterface.DisposisiOperator(NomorSurat,SuratDari,TanggalSurat,DiterimaTanggal,NomorAgenda,Sifat,Perihal);
+        call.enqueue(new Callback<Respon>() {
             @Override
-            public void onResponse(Call<FormDisposisi> call, Response<FormDisposisi> response) {
+            public void onResponse(Call<Respon> call, Response<Respon> response) {
                 if (response.body().getRespon().equals("sukses")){
                     Toast.makeText(getContext(), "Disposisi Sukses", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<FormDisposisi> call, Throwable t) {
+            public void onFailure(Call<Respon> call, Throwable t) {
                 Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
             }
         });

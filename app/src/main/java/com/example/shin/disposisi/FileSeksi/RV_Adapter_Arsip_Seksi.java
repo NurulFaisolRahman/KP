@@ -2,7 +2,6 @@ package com.example.shin.disposisi.FileSeksi;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,27 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.shin.disposisi.LihatSurat;
 import com.example.shin.disposisi.R;
 import com.example.shin.disposisi.Surat;
-import com.example.shin.disposisi.UpdateDisposisi;
-
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RV_Adapter_Arsip_Seksi extends RecyclerView.Adapter<RV_Adapter_Arsip_Seksi.ViewHolderSeksi>{
 
     private Context ContextSeksi;
     private List<Surat> DataArsipSeksi;
-    ApiUpdateSeksi apiUpdateSeksi;
-    Retrofit retrofit;
 
     public RV_Adapter_Arsip_Seksi(Context contextSeksi, List<Surat> dataSeksi) {
         ContextSeksi = contextSeksi;

@@ -12,10 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-import com.example.shin.disposisi.FileKadis.ResponDisposisiKadis;
 import com.example.shin.disposisi.R;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,6 +42,9 @@ public class ArsipSeksi extends Fragment {
         }
         else if (NamaSub.equals("skp") || NamaSub.equals("spe") || NamaSub.equals("sijt")){
             NamaBidang = "aptika";
+        }
+        else if (NamaSub.equals("spk") || NamaSub.equals("suk")){
+            NamaBidang = "sekretaris";
         }
         RV_Seksi = v.findViewById(R.id.RV_Disposisi);
         Rafresh = v.findViewById(R.id.Rafresh);
@@ -75,20 +77,23 @@ public class ArsipSeksi extends Fragment {
     }
 
     private void TampilkanArsip(){
-        Call<ResponDisposisiKadis> call = apiSeksi.getData(NamaBidang,NamaSub,"1");
-        call.enqueue(new Callback<ResponDisposisiKadis>() {
+        Call<ResponSeksi> call = apiSeksi.getData(NamaBidang,NamaSub,"1");
+        call.enqueue(new Callback<ResponSeksi>() {
             @Override
-            public void onResponse(Call<ResponDisposisiKadis> call, Response<ResponDisposisiKadis> response) {
+            public void onResponse(Call<ResponSeksi> call, Response<ResponSeksi> response) {
                 if (response.body().getRespon().equals("sukses")){
                     RV_Adapter_Arsip_Seksi RV_adapter = new RV_Adapter_Arsip_Seksi(getContext(), response.body().getDataSurat());
                     RV_Seksi.setLayoutManager(new LinearLayoutManager(getActivity()));
                     RV_Seksi.setAdapter(RV_adapter);
                 }
+                else {
+                    Toast.makeText(getContext(), "Belum Ada Arsip", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
-            public void onFailure(Call<ResponDisposisiKadis> call, Throwable t) {
-
+            public void onFailure(Call<ResponSeksi> call, Throwable t) {
+                Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }

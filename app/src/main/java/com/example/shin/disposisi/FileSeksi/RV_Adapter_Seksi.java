@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.example.shin.disposisi.LihatSurat;
 import com.example.shin.disposisi.R;
 import com.example.shin.disposisi.Surat;
-import com.example.shin.disposisi.UpdateDisposisi;
+import com.example.shin.disposisi.Respon;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,15 +54,18 @@ public class RV_Adapter_Seksi extends RecyclerView.Adapter<RV_Adapter_Seksi.View
                 else if (NamaSub.equals("skp") || NamaSub.equals("spe") || NamaSub.equals("sijt")){
                     NamaBidang = "aptika";
                 }
+                else if (NamaSub.equals("spk") || NamaSub.equals("suk")){
+                    NamaBidang = "sekretaris";
+                }
                 retrofit = new Retrofit.Builder()
                         .baseUrl(ApiUpdateSeksi.BASE_URL)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 apiUpdateSeksi = retrofit.create(ApiUpdateSeksi.class);
-                Call<UpdateDisposisi> call = apiUpdateSeksi.UpdateSeksi(DataSeksi.get(viewHolderSeksi.getAdapterPosition()).getNomor_surat(),NamaBidang,NamaSub);
-                call.enqueue(new Callback<UpdateDisposisi>() {
+                Call<Respon> call = apiUpdateSeksi.UpdateSeksi(DataSeksi.get(viewHolderSeksi.getAdapterPosition()).getNomor_surat(),NamaBidang,NamaSub);
+                call.enqueue(new Callback<Respon>() {
                     @Override
-                    public void onResponse(Call<UpdateDisposisi> call, Response<UpdateDisposisi> response) {
+                    public void onResponse(Call<Respon> call, Response<Respon> response) {
                         if (response.body().getRespon().equals("sukses")){
                             LihatSurat.NomorSurat = DataSeksi.get(viewHolderSeksi.getAdapterPosition()).getNomor_surat();
                             Intent Disposisi = new Intent(ContextSeksi, LihatSurat.class);
@@ -71,7 +74,7 @@ public class RV_Adapter_Seksi extends RecyclerView.Adapter<RV_Adapter_Seksi.View
                     }
 
                     @Override
-                    public void onFailure(Call<UpdateDisposisi> call, Throwable t) {
+                    public void onFailure(Call<Respon> call, Throwable t) {
                         Toast.makeText(ContextSeksi, "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
                     }
                 });

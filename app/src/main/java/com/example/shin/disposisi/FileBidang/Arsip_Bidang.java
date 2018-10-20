@@ -28,11 +28,13 @@ public class Arsip_Bidang extends Fragment {
 
     View v;
     private RecyclerView RV_Arsip_Bidang;
+    ApiArsipBidangSekretaris apiArsipBidangSekretaris;
     ApiArsipBidangIKP apiArsipBidangIKP;
     ApiArsipBidangAPTIKA apiArsipBidangAPTIKA;
     ApiArsipBidangSDTIK apiArsipBidangSDTIK;
     SwipeRefreshLayout Rafresh;
     String NamaBidang;
+    Retrofit retrofitSekretaris;
     Retrofit retrofitIKP;
     Retrofit retrofitAPTIKA;
     Retrofit retrofitSDTIK;
@@ -48,6 +50,10 @@ public class Arsip_Bidang extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         NamaBidang = sharedPreferences.getString("Nama","");
         RV_Arsip_Bidang = v.findViewById(R.id.RV_Disposisi);
+        retrofitSekretaris= new Retrofit.Builder()
+                .baseUrl(ApiArsipBidangSekretaris.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         retrofitIKP = new Retrofit.Builder()
                 .baseUrl(ApiArsipBidangIKP.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -60,6 +66,7 @@ public class Arsip_Bidang extends Fragment {
                 .baseUrl(ApiArsipBidangSDTIK.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        apiArsipBidangSekretaris = retrofitSekretaris.create(ApiArsipBidangSekretaris.class);
         apiArsipBidangIKP = retrofitIKP.create(ApiArsipBidangIKP.class);
         apiArsipBidangAPTIKA = retrofitAPTIKA.create(ApiArsipBidangAPTIKA.class);
         apiArsipBidangSDTIK = retrofitSDTIK.create(ApiArsipBidangSDTIK.class);
@@ -100,7 +107,7 @@ public class Arsip_Bidang extends Fragment {
 
                 @Override
                 public void onFailure(Call<List<DataArsipBidangIKP>> call, Throwable t) {
-                    Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
+
                 }
             });
         }
@@ -116,7 +123,7 @@ public class Arsip_Bidang extends Fragment {
 
                 @Override
                 public void onFailure(Call<List<DataArsipBidangAPTIKA>> call, Throwable t) {
-                    Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
+
                 }
             });
         }
@@ -132,7 +139,23 @@ public class Arsip_Bidang extends Fragment {
 
                 @Override
                 public void onFailure(Call<List<DataArsipBidangSDTIK>> call, Throwable t) {
-                    Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+        else if (NamaBidang.equals("sekretaris")){
+            Call<List<DataArsipBidangSekretaris>> call = apiArsipBidangSekretaris.getData(NamaBidang);
+            call.enqueue(new Callback<List<DataArsipBidangSekretaris>>() {
+                @Override
+                public void onResponse(Call<List<DataArsipBidangSekretaris>> call, Response<List<DataArsipBidangSekretaris>> response) {
+                    RV_Adapter_Arsip_BidangSekretaris RV_adapter = new RV_Adapter_Arsip_BidangSekretaris(getContext(), response.body());
+                    RV_Arsip_Bidang.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    RV_Arsip_Bidang.setAdapter(RV_adapter);
+                }
+
+                @Override
+                public void onFailure(Call<List<DataArsipBidangSekretaris>> call, Throwable t) {
+
                 }
             });
         }

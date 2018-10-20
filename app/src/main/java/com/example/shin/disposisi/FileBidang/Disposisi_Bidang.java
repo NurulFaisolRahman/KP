@@ -73,6 +73,9 @@ public class Disposisi_Bidang extends Fragment{
                     RV_Disposisi_Bidang.setLayoutManager(new LinearLayoutManager(getActivity()));
                     RV_Disposisi_Bidang.setAdapter(RV_adapter);
                 }
+                else{
+                    Toast.makeText(getContext(), "Belum Ada Surat Masuk", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

@@ -61,8 +61,8 @@
         </activity>
         <activity
             android:name=".FileKadis.Edit_Disposisi_Kadis"
-            android:label="Kadis Edit Disposisi"
             android:screenOrientation="portrait"
+            android:label="Edit Disposisi"
             android:theme="@style/AppTheme">
         </activity>
         <activity

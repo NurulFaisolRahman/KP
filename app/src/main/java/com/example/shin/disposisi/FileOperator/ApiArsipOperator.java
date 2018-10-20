@@ -10,5 +10,5 @@ import retrofit2.http.GET;
 public interface ApiArsipOperator {
     String BASE_URL = Server.IP;
     @GET("ArsipOperator.php")
-    Call<List<Surat>> getData();
+    Call<ResponArsipOperator> getData();
 }

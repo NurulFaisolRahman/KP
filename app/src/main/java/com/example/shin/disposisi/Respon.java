@@ -2,7 +2,7 @@ package com.example.shin.disposisi;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UpdateDisposisi {
+public class Respon {
 
     @SerializedName("respon")
     private String Respon;

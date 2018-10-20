@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.shin.disposisi.FileLogin.ApiClientLogin;
-import com.example.shin.disposisi.UpdateDisposisi;
+import com.example.shin.disposisi.Respon;
 import com.example.shin.disposisi.LihatSurat;
 import com.example.shin.disposisi.R;
 
@@ -22,7 +22,7 @@ public class Edit_Disposisi_Kadis extends AppCompatActivity {
 
     Button EditDisposisi, TombolLihatSurat;
     EditText IsiDisposisiKadis;
-    CheckBox Sekretaris,IKP,APTIKA,SDTIK;
+    CheckBox Sekretaris,IKP,APTIKA,SDTIK,BidangLain;
     ApiMendisposisi apiInterface;
 
     @Override
@@ -37,6 +37,8 @@ public class Edit_Disposisi_Kadis extends AppCompatActivity {
         IKP = findViewById(R.id.BidangIKP);
         APTIKA = findViewById(R.id.BidangAptika);
         SDTIK = findViewById(R.id.BidangSD_TIK);
+        BidangLain = findViewById(R.id.BidangLain);
+        BidangLain.setVisibility(View.GONE);
         apiInterface = ApiClientLogin.GetApiClient().create(ApiMendisposisi.class);
 
         String[] NamaBidang = RV_Adapter_Arsip_Kadis.BidangTujuan.split("/");
@@ -56,7 +58,7 @@ public class Edit_Disposisi_Kadis extends AppCompatActivity {
         }
         IsiDisposisiKadis.setText(RV_Adapter_Arsip_Kadis.IsiDisposisi);
 
-        EditDisposisi.setText("EDIT DISPOSISI");
+        EditDisposisi.setText("UPDATE DISPOSISI");
         EditDisposisi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,13 +72,25 @@ public class Edit_Disposisi_Kadis extends AppCompatActivity {
                         BidangTujuan += "sekretaris";
                     }
                     if (IKP.isChecked()){
-                        BidangTujuan += "/ikp";
+                        if (BidangTujuan.equals("")){
+                            BidangTujuan += "ikp";
+                        }else {
+                            BidangTujuan += "/ikp";
+                        }
                     }
                     if (APTIKA.isChecked()){
-                        BidangTujuan += "/aptika";
+                        if (BidangTujuan.equals("")){
+                            BidangTujuan += "aptika";
+                        }else {
+                            BidangTujuan += "/aptika";
+                        }
                     }
                     if (SDTIK.isChecked()){
-                        BidangTujuan += "/sdtik";
+                        if (BidangTujuan.equals("")){
+                            BidangTujuan += "sdtik";
+                        }else {
+                            BidangTujuan += "/sdtik";
+                        }
                     }
                     KadisEditDisposisi(RV_Adapter_Arsip_Kadis.NomorSurat,BidangTujuan,IsiDisposisi);
                     finish();
@@ -95,17 +109,17 @@ public class Edit_Disposisi_Kadis extends AppCompatActivity {
     }
 
     private void KadisEditDisposisi(String NomorSurat, String Bidang, String IsiDisposisi){
-        Call<UpdateDisposisi> call = apiInterface.Mendisposisi(NomorSurat,Bidang,IsiDisposisi);
-        call.enqueue(new Callback<UpdateDisposisi>() {
+        Call<Respon> call = apiInterface.Mendisposisi(NomorSurat,Bidang,IsiDisposisi);
+        call.enqueue(new Callback<Respon>() {
             @Override
-            public void onResponse(Call<UpdateDisposisi> call, Response<UpdateDisposisi> response) {
+            public void onResponse(Call<Respon> call, Response<Respon> response) {
                 if (response.body().getRespon().equals("sukses")){
                     Toast.makeText(Edit_Disposisi_Kadis.this, "Edit Disposisi Sukses", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<UpdateDisposisi> call, Throwable t) {
+            public void onFailure(Call<Respon> call, Throwable t) {
                 Toast.makeText(Edit_Disposisi_Kadis.this, "Mohon Cek Koneksi Internet", Toast.LENGTH_SHORT).show();
             }
         });

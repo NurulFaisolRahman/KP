@@ -71,6 +71,9 @@ public class Arsip_Kadis extends Fragment{
                     RV_Arsip_Kadis.setLayoutManager(new LinearLayoutManager(getActivity()));
                     RV_Arsip_Kadis.setAdapter(RV_adapter);
                 }
+                else {
+                    Toast.makeText(getContext(), "Belum Ada Arsip", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

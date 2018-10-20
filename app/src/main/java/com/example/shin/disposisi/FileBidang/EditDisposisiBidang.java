@@ -24,7 +24,7 @@ public class EditDisposisiBidang extends AppCompatActivity {
     Button BidangMendisposisi, TombolLihatSurat;
     EditText IsiDisposisiKadis;
     TextView IsiDisposisi;
-    CheckBox Sekretaris,IKP,APTIKA,SDTIK;
+    CheckBox Sekretaris,IKP,APTIKA,SDTIK,BidangLain;
     ApiEditDisposisi apiEditDisposisi;
     String SubBidang = "";
     static String NomorSurat;
@@ -41,16 +41,18 @@ public class EditDisposisiBidang extends AppCompatActivity {
         IKP = findViewById(R.id.BidangIKP);
         APTIKA = findViewById(R.id.BidangAptika);
         SDTIK = findViewById(R.id.BidangSD_TIK);
+        BidangLain = findViewById(R.id.BidangLain);
         IsiDisposisi = findViewById(R.id.IsiDisposisi);
         apiEditDisposisi = ApiClientLogin.GetApiClient().create(ApiEditDisposisi.class);
         SharedPreferences sharedPreferences = getSharedPreferences("login", Context.MODE_PRIVATE);
         NamaBidang = sharedPreferences.getString("Nama","");
         IsiDisposisi.setVisibility(View.INVISIBLE);
         IsiDisposisiKadis.setVisibility(View.INVISIBLE);
-        BidangMendisposisi.setText("EDIT DISPOSISI");
+        BidangMendisposisi.setText("UPDATE DISPOSISI");
 
         if (NamaBidang.equals("ikp")){
             SDTIK.setVisibility(View.GONE);
+            BidangLain.setVisibility(View.GONE);
             Sekretaris.setText("Seksi Pengelolaan Komunikasi Publik");
             IKP.setText("Seksi Pengelolaan Informasi Publik");
             APTIKA.setText("Seksi Pengelolaan Media Komunikasi");
@@ -66,6 +68,7 @@ public class EditDisposisiBidang extends AppCompatActivity {
         }
         else if (NamaBidang.equals("aptika")){
             SDTIK.setVisibility(View.GONE);
+            BidangLain.setVisibility(View.GONE);
             Sekretaris.setText("Seksi Keamanan dan Persandian");
             IKP.setText("Seksi Pengundangan e-Goverment");
             APTIKA.setText("Seksi Infrastruktur Jaringan TIK");
@@ -81,6 +84,7 @@ public class EditDisposisiBidang extends AppCompatActivity {
         }
         else if (NamaBidang.equals("sdtik")){
             SDTIK.setVisibility(View.GONE);
+            BidangLain.setVisibility(View.GONE);
             Sekretaris.setText("Seksi Sumber Daya TIK");
             IKP.setText("Seksi Ekosistem TIK");
             APTIKA.setText("Seksi Data dan Statistik");
@@ -92,6 +96,28 @@ public class EditDisposisiBidang extends AppCompatActivity {
             }
             if (!RV_Adapter_Arsip_BidangSDTIK.SDS.equals("")){
                 APTIKA.setChecked(true);
+            }
+        }
+        else if (NamaBidang.equals("sekretaris")){
+            Sekretaris.setText("Seksi Perencanaan Dan Keuangan");
+            IKP.setText("Seksi Umum Dan Kepegawaian");
+            APTIKA.setText("Bidang APTIKA");
+            SDTIK.setText("Bidang SD-TIK");
+            BidangLain.setText("Bidang IKP");
+            if (!RV_Adapter_Arsip_BidangSekretaris.SPK.equals("")){
+                Sekretaris.setChecked(true);
+            }
+            if (!RV_Adapter_Arsip_BidangSekretaris.SUK.equals("")){
+                IKP.setChecked(true);
+            }
+            if (!RV_Adapter_Arsip_BidangSekretaris.APTIKA.equals("")){
+                APTIKA.setChecked(true);
+            }
+            if (!RV_Adapter_Arsip_BidangSekretaris.SDTIK.equals("")){
+                SDTIK.setChecked(true);
+            }
+            if (!RV_Adapter_Arsip_BidangSekretaris.IKP.equals("")){
+                BidangLain.setChecked(true);
             }
         }
 
@@ -182,6 +208,48 @@ public class EditDisposisiBidang extends AppCompatActivity {
                             }
                             else{
                                 SubBidang += "/sds";
+                            }
+                        }
+                        EditDisposisi();
+                    }
+                }else if(NamaBidang.equals("sekretaris")) {
+                    if ((!Sekretaris.isChecked() && !IKP.isChecked() && !APTIKA.isChecked() && !SDTIK.isChecked() && !BidangLain.isChecked())) {
+                        Toast.makeText(EditDisposisiBidang.this, "Mohon Lengkapi Input", Toast.LENGTH_SHORT).show();
+                    } else {
+                        SubBidang = "";
+                        if (Sekretaris.isChecked()) {
+                            SubBidang += "spk";
+                        }
+                        if (IKP.isChecked()) {
+                            if (SubBidang.equals("")){
+                                SubBidang += "suk";
+                            }
+                            else{
+                                SubBidang += "/suk";
+                            }
+                        }
+                        if (APTIKA.isChecked()) {
+                            if (SubBidang.equals("")){
+                                SubBidang += "aptika";
+                            }
+                            else{
+                                SubBidang += "/aptika";
+                            }
+                        }
+                        if (SDTIK.isChecked()) {
+                            if (SubBidang.equals("")){
+                                SubBidang += "sdtik";
+                            }
+                            else{
+                                SubBidang += "/sdtik";
+                            }
+                        }
+                        if (BidangLain.isChecked()) {
+                            if (SubBidang.equals("")){
+                                SubBidang += "ikp";
+                            }
+                            else{
+                                SubBidang += "/ikp";
                             }
                         }
                         EditDisposisi();

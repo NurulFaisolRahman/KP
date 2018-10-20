@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.example.shin.disposisi.R;
 import com.example.shin.disposisi.Surat;
 import java.util.List;
@@ -61,18 +63,20 @@ public class Arsip_Operator extends Fragment {
     }
 
     private void TampilkanArsip(){
-        Call<List<Surat>> call = apiArsipOperator.getData();
-        call.enqueue(new Callback<List<Surat>>() {
+        Call<ResponArsipOperator> call = apiArsipOperator.getData();
+        call.enqueue(new Callback<ResponArsipOperator>() {
             @Override
-            public void onResponse(Call<List<Surat>> call, Response<List<Surat>> response) {
-                RV_Adapter_Arsip_Operator RV_adapter = new RV_Adapter_Arsip_Operator(getContext(), response.body());
-                RV_Arsip_Operator.setLayoutManager(new LinearLayoutManager(getActivity()));
-                RV_Arsip_Operator.setAdapter(RV_adapter);
+            public void onResponse(Call<ResponArsipOperator> call, Response<ResponArsipOperator> response) {
+                if (response.body().getRespon().equals("sukses")){
+                    RV_Adapter_Arsip_Operator RV_adapter = new RV_Adapter_Arsip_Operator(getContext(), response.body().getDataSurat());
+                    RV_Arsip_Operator.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    RV_Arsip_Operator.setAdapter(RV_adapter);
+                }
             }
 
             @Override
-            public void onFailure(Call<List<Surat>> call, Throwable t) {
-
+            public void onFailure(Call<ResponArsipOperator> call, Throwable t) {
+                Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
