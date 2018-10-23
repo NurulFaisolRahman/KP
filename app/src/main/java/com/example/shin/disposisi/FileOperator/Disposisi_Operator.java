@@ -183,6 +183,21 @@ public class Disposisi_Operator extends Fragment implements View.OnClickListener
             public void onResponse(Call<Respon> call, Response<Respon> response) {
                 if (response.body().getRespon().equals("sukses")){
                     Toast.makeText(getContext(), "Disposisi Sukses", Toast.LENGTH_SHORT).show();
+                    for (int i = 0; i < DaftarAlamatURI.size(); i++) {
+                        UploadGambar(DaftarAlamatURI.get(i), nomor_surat.getText().toString(), String.valueOf(i+1));
+                    }
+                    DaftarAlamatURI.clear();
+                    nomor_surat.setText("");
+                    surat_dari.setText("");
+                    tanggal_surat.setText("");
+                    diterima_tanggal.setText("");
+                    nomor_agenda.setText("");
+                    perihal.setText("");
+                    JumlahFoto.setText("  Anda Belum Input Foto");
+                    radio.clearCheck();
+                }
+                else {
+                    Toast.makeText(getContext(), "Nomor Surat Telah Ada", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -202,18 +217,6 @@ public class Disposisi_Operator extends Fragment implements View.OnClickListener
                 !(radio.getCheckedRadioButtonId() == -1) && !DaftarAlamatURI.isEmpty()){
 
                 UploadFormDisposisi();
-                for (int i = 0; i < DaftarAlamatURI.size(); i++) {
-                    UploadGambar(DaftarAlamatURI.get(i), nomor_surat.getText().toString(), String.valueOf(i+1));
-                }
-                DaftarAlamatURI.clear();
-                nomor_surat.setText("");
-                surat_dari.setText("");
-                tanggal_surat.setText("");
-                diterima_tanggal.setText("");
-                nomor_agenda.setText("");
-                perihal.setText("");
-                JumlahFoto.setText("  Anda Belum Input Foto");
-                radio.clearCheck();
             }
             else{
                 Toast.makeText(getContext(), "Mohon Lengkapi Inputan", Toast.LENGTH_SHORT).show();

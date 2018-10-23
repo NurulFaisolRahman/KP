@@ -52,15 +52,20 @@ public class Disposisi_Bidang extends Fragment{
                 }, 2000);
             }
         });
+        if(getUserVisibleHint()){
+            TampilkanBidang();
+        }
         return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        RV_Disposisi_Bidang.removeAllViewsInLayout();
-        RV_Disposisi_Bidang.removeAllViewsInLayout();
-        TampilkanBidang();
+        if(getUserVisibleHint()){
+            RV_Disposisi_Bidang.removeAllViewsInLayout();
+            RV_Disposisi_Bidang.removeAllViewsInLayout();
+            TampilkanBidang();
+        }
     }
 
     private void TampilkanBidang(){
@@ -83,5 +88,12 @@ public class Disposisi_Bidang extends Fragment{
                 Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            TampilkanBidang();
+        }
     }
 }

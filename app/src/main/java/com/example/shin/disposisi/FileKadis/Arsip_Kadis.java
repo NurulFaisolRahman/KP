@@ -50,15 +50,20 @@ public class Arsip_Kadis extends Fragment{
                 }, 2000);
             }
         });
+        if(getUserVisibleHint()){
+            TampilkanArsip();
+        }
         return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        RV_Arsip_Kadis.removeAllViewsInLayout();
-        RV_Arsip_Kadis.removeAllViewsInLayout();
-        TampilkanArsip();
+        if(getUserVisibleHint()){
+            RV_Arsip_Kadis.removeAllViewsInLayout();
+            RV_Arsip_Kadis.removeAllViewsInLayout();
+            TampilkanArsip();
+        }
     }
 
     private void TampilkanArsip() {
@@ -81,5 +86,13 @@ public class Arsip_Kadis extends Fragment{
                 Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            TampilkanArsip();
+        }
     }
 }

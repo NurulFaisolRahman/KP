@@ -67,15 +67,20 @@ public class DisposisiSeksi extends Fragment {
                 }, 2000);
             }
         });
+        if(getUserVisibleHint()){
+            TampilkanSurat();
+        }
         return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        RV_Seksi.removeAllViewsInLayout();
-        RV_Seksi.removeAllViewsInLayout();
-        TampilkanSurat();
+        if(getUserVisibleHint()){
+            RV_Seksi.removeAllViewsInLayout();
+            RV_Seksi.removeAllViewsInLayout();
+            TampilkanSurat();
+        }
     }
 
     private void TampilkanSurat(){
@@ -98,5 +103,13 @@ public class DisposisiSeksi extends Fragment {
                 Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            TampilkanSurat();
+        }
     }
 }

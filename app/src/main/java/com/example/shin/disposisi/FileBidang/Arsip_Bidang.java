@@ -83,15 +83,20 @@ public class Arsip_Bidang extends Fragment {
                 }, 2000);
             }
         });
+        if(getUserVisibleHint()){
+            TampilkanArsip();
+        }
         return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        RV_Arsip_Bidang.removeAllViewsInLayout();
-        RV_Arsip_Bidang.removeAllViewsInLayout();
-        TampilkanArsip();
+        if(getUserVisibleHint()){
+            RV_Arsip_Bidang.removeAllViewsInLayout();
+            RV_Arsip_Bidang.removeAllViewsInLayout();
+            TampilkanArsip();
+        }
     }
 
     private void TampilkanArsip(){
@@ -158,6 +163,14 @@ public class Arsip_Bidang extends Fragment {
 
                 }
             });
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            TampilkanArsip();
         }
     }
 }

@@ -65,15 +65,20 @@ public class ArsipSeksi extends Fragment {
                 }, 2000);
             }
         });
+        if(getUserVisibleHint()){
+            TampilkanArsip();
+        }
         return v;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        RV_Seksi.removeAllViewsInLayout();
-        RV_Seksi.removeAllViewsInLayout();
-        TampilkanArsip();
+        if(getUserVisibleHint()){
+            RV_Seksi.removeAllViewsInLayout();
+            RV_Seksi.removeAllViewsInLayout();
+            TampilkanArsip();
+        }
     }
 
     private void TampilkanArsip(){
@@ -96,5 +101,13 @@ public class ArsipSeksi extends Fragment {
                 Toast.makeText(getContext(), "Mohon Cek Internet", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser && isResumed()) {
+            TampilkanArsip();
+        }
     }
 }
